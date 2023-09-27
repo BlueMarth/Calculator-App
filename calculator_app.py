@@ -5,9 +5,7 @@ from tkinter import ttk
 ## user input functions
 
 
-
 ## arithmetic functions
-
 
 
 ## display output functions
@@ -33,7 +31,9 @@ display_height = root.winfo_screenheight()
 left = int(display_width / 2 - app_width / 2)
 top = int(display_height / 2 - app_height / 2)
 root.geometry(f'{app_width}x{app_height}+{left}+{top}')
-
+resize_x = True
+resize_y = False
+root.resizable(resize_x, resize_y)
 
 ## widgets definition
 # main display
