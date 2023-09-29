@@ -23,15 +23,15 @@ root.iconbitmap('python_icon.ico') ### change icon!
 # app_geometry = str(app_width) + 'x' + str(app_height) + '+' + str(screen_centerX) + '+' + str(screen_centerY)
 # root.geometry(app_geometry)
 
-app_width = 260
-app_height = 420
+app_width = 280
+app_height = 400
 display_width = root.winfo_screenwidth()
 display_height = root.winfo_screenheight()
 
 left = int(display_width / 2 - app_width / 2)
 top = int(display_height / 2 - app_height / 2)
 root.geometry(f'{app_width}x{app_height}+{left}+{top}')
-resize_x = True
+resize_x = False
 resize_y = False
 root.resizable(resize_x, resize_y)
 
