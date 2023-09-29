@@ -80,5 +80,10 @@ class Entry(ttk.Frame):
 
 		self.pack(side = 'left', expand = True, fill = 'both', padx = 20, pady = 20)
 
+class Button(ttk.Button):
+	def __init__(self, parent, text, background):
+		super().__init__(parent)
+		
+
 
 App('Class based app', (400,600))
