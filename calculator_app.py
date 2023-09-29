@@ -31,7 +31,7 @@ display_height = root.winfo_screenheight()
 left = int(display_width / 2 - app_width / 2)
 top = int(display_height / 2 - app_height / 2)
 root.geometry(f'{app_width}x{app_height}+{left}+{top}')
-resize_x = False
+resize_x = True
 resize_y = False
 root.resizable(resize_x, resize_y)
 
@@ -68,19 +68,11 @@ btn_clear = ttk.Button(root, text = 'C')
 
 ## grid
 
-root.rowconfigure(0, weight = 2)
-root.rowconfigure(1, weight = 2)
-root.rowconfigure(2, weight = 2)
-root.rowconfigure(3, weight = 3)
-root.rowconfigure(4, weight = 3)
-root.rowconfigure(5, weight = 3)
-root.rowconfigure(6, weight = 3)
-root.rowconfigure(7, weight = 3)
+root.rowconfigure((0,1,2), weight = 2, uniform = 'a')
+root.rowconfigure((3,4,5,6,7), weight = 3, uniform = 'a')
 
-root.columnconfigure(0, weight = 3)
-root.columnconfigure(1, weight = 3)
-root.columnconfigure(2, weight = 3)
-root.columnconfigure(3, weight = 3)
+root.columnconfigure((0,1,2,3), weight = 3, uniform = 'a')
+
 
 # place widgets in grid
 btn_0.grid(row = 7, column = 1, sticky = 'nesw', ipadx=3, ipady=3)

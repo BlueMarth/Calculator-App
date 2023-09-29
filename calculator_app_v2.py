@@ -2,88 +2,63 @@ import tkinter as tk
 from tkinter import ttk
 
 class App(tk.Tk):
-	def __init__(self, title, size):
-		
-		# main setup
-		super().__init__()
-		self.title(title)
-		self.geometry(f'{size[0]}x{size[1]}')
-		self.minsize(size[0],size[1])
+    def __init__(self):
+        super().__init__()
+        self.title('Calculator')
+        self.geometry('350x500')
+        self.minsize(150,250)
+        
+        Display(self)
+        Keypad(self)
 
-		# widgets 
-		self.menu = Menu(self)
-		self.main = Main(self)
+        self.mainloop()
 
-		# run 
-		self.mainloop()
 
-class Menu(ttk.Frame):
-	def __init__(self, parent):
-		super().__init__(parent)
-		self.place(x = 0, y = 0, relwidth = 0.3, relheight = 1)
+class Display(ttk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.place(x = 0, y = 0, relwidth = 1, relheight = 0.25)
+        label = ttk.Label(self, text = 'label', justify = 'center', background = 'red')
+        label.place(relx = 1, rely = 1, anchor = 'se')
+        
 
-		self.create_widgets()
-
-	def create_widgets(self):
-		
-		# create the widgets 
-		menu_button1 = ttk.Button(self, text = 'Button 1')
-		menu_button2 = ttk.Button(self, text = 'Button 2')
-		menu_button3 = ttk.Button(self, text = 'Button 3')
-
-		menu_slider1 = ttk.Scale(self, orient = 'vertical')
-		menu_slider2 = ttk.Scale(self, orient = 'vertical')
-
-		toggle_frame = ttk.Frame(self)
-		menu_toggle1 = ttk.Checkbutton(toggle_frame, text = 'check 1')
-		menu_toggle2 = ttk.Checkbutton(toggle_frame, text = 'check 2')
-
-		entry = ttk.Entry(self)
-
-		# create the grid
-		self.columnconfigure((0,1,2), weight = 1, uniform = 'a')
-		self.rowconfigure((0,1,2,3,4), weight = 1, uniform = 'a')
-
-		# place the widgets 
-		menu_button1.grid(row = 0, column = 0, sticky = 'nswe', columnspan = 2)
-		menu_button2.grid(row = 0, column = 2, sticky = 'nswe')
-		menu_button3.grid(row = 1, column = 0, columnspan = 3, sticky = 'nsew')
-
-		menu_slider1.grid(row = 2, column = 0, rowspan = 2, sticky = 'nsew', pady = 20)
-		menu_slider2.grid(row = 2, column = 2, rowspan = 2, sticky = 'nsew', pady = 20)
-
-		# toggle layout
-		toggle_frame.grid(row = 4, column = 0, columnspan = 3, sticky = 'nsew')
-		menu_toggle1.pack(side = 'left', expand = True)
-		menu_toggle2.pack(side = 'left', expand = True)
-
-		# entry layout
-		entry.place(relx = 0.5, rely = 0.95, relwidth = 0.9, anchor = 'center')		
-
-class Main(ttk.Frame):
-	def __init__(self, parent):
-		super().__init__(parent)
-		self.place(relx = 0.3, y = 0, relwidth = 0.7, relheight = 1)
-		Entry(self, 'Entry 1','Button 1','green')
-		Entry(self, 'Entry 2','Button 2','blue')
-		Entry(self, 'Entry 3','Button 3','green')
-
-class Entry(ttk.Frame):
-	def __init__(self, parent, label_text, button_text, label_background):
-		super().__init__(parent)
-
-		label = ttk.Label(self, text = label_text, background = label_background)
-		button = ttk.Button(self, text = button_text)
-
-		label.pack(expand = True, fill = 'both')
-		button.pack(expand = True, fill = 'both', pady = 10)
-
-		self.pack(side = 'left', expand = True, fill = 'both', padx = 20, pady = 20)
-
-class Button(ttk.Button):
-	def __init__(self, parent, text, background):
-		super().__init__(parent)
+class Keypad(ttk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.place(x = 0, rely = 0.25, relwidth = 1, relheight = 0.75)
+        self.columnconfigure((0,1,2,3), weight = 1, uniform = 'a')
+        self.rowconfigure((0,1,2,3,4,5), weight = 1, uniform = 'a')
+        
+        self.add_button('btn_0', '0', 5, 1)
+        self.add_button('btn_1', '1', 4, 0)
+        self.add_button('btn_2', '2', 4, 1)
+        self.add_button('btn_3', '3', 4, 2)
+        self.add_button('btn_4', '4', 3, 0)
+        self.add_button('btn_5', '5', 3, 1)
+        self.add_button('btn_6', '6', 3, 2)
+        self.add_button('btn_7', '7', 2, 0)
+        self.add_button('btn_8', '8', 2, 1)
+        self.add_button('btn_9', '9', 2, 2)
+        self.add_button('btn_dot', '.', 5, 2)
+        self.add_button('btn_exe', '=', 5, 3)
+        self.add_button('btn_plus', '+', 4, 3)
+        self.add_button('btn_minus', '-', 3, 3)
+        self.add_button('btn_times', 'x', 2, 3)
+        self.add_button('btn_over', '/', 1, 3)
+        self.add_button('btn_back', '<', 0, 3)
+        self.add_button('btn_clear', 'C', 0, 2)
+        self.add_button('btn_recip', '1/x', 1, 0)
+        self.add_button('btn_sqrt', '1/^2', 1, 2)
+        self.add_button('btn_sq', '^2', 1, 1)
+        self.add_button('btn_fact', '!', 0, 1)
+        self.add_button('btn_perc', '%', 0, 0)
+        
+    def add_button(self, buttonID, buttonText, buttonRow, buttonColumn):
+        buttonID = ttk.Button(self, text = buttonText)
+        buttonID.grid(row = buttonRow, column = buttonColumn, sticky = 'nsew')
+        
+			
 		
 
 
-App('Class based app', (400,600))
+App()
