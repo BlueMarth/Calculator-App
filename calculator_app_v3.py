@@ -23,7 +23,7 @@ class Calculator:
 
 
     def create_display_frame(self):
-        frame = tk.Farme(self.window, height = 221, bg = LIGHT_GRAY)
+        frame = tk.Frame(self.window, height = 221, bg = LIGHT_GRAY)
         frame.pack(expand = True, fill = 'both')
         return frame
     
