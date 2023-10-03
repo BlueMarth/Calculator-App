@@ -53,12 +53,12 @@ class Keypad(ttk.Frame):
         self.add_button('btn_fact', '!', 0, 1)
         self.add_button('btn_perc', '%', 0, 0)
         
-    def add_button(self, buttonID, buttonText, buttonRow, buttonColumn):
-        buttonID = ttk.Button(self, text = buttonText)
+    def add_button(self, buttonID, buttonText, buttonRow, buttonColumn, buttonCommand):
+        buttonID = ttk.Button(self, text = buttonText, command = buttonCommand)
         buttonID.grid(row = buttonRow, column = buttonColumn, sticky = 'nsew')
-        
-			
-		
+
+    def
+
 
 
 App()
